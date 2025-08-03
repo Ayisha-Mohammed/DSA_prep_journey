@@ -1,0 +1,85 @@
+# Concepts to Remember
+# 🔤 Normalization (Lowercasing and Filtering)
+# c.lower() ensures case-insensitive comparison.
+# c.isalnum() filters out all non-alphanumeric characters (spaces, punctuation, symbols).
+
+# Example: "A man, a plan" → "amanaplan"
+# 🧱 String Comprehension
+# ''.join(...) combines all filtered characters into one clean string.
+# Efficient and readable.
+
+# 🔄 Palindrome Check via Reversal
+# s == s[::-1] compares the string to its reverse using Python slicing.
+# s[::-1] is a fast way to reverse a string.
+
+# 💻 Time Complexity
+# O(n) to filter and lowercase the string.
+# O(n) to reverse the string.
+# ✅ Total: O(n) time | O(n) space (for the cleaned copy of the string).
+
+
+class Solution(object):
+    def isPalindrome(self, s):
+        s = ''.join(c.lower() for c in s if c.isalnum())
+        return s == s[::-1]
+
+# ✅ Pros of This Approach:
+# Very short and clean.No manual pointer logic.Leverages Python's strengths.
+# ❌ Cons:
+# Not O(1) space (since it creates a new string).Not ideal in low-level or memory-critical scenarios.
+# 💡 When to Use This
+# Perfect for interview quick passes (clean, readable).# Great for Pythonic one-liners or quick scripts.
+# If LeetCode asks for in-place or constant space → use two pointers.
+
+# 🧭 Quick Mental Flow
+# Clean string → lowercase + remove junk
+# Check if cleaned version is same as reversed
+
+
+
+
+
+
+# class Solution:
+#     def isPalindrome(self, s: str) -> bool:
+#         left, right = 0, len(s) - 1
+#         while left < right:
+#             while left < right and not s[left].isalnum():
+#                 left += 1
+#             while left < right and not s[right].isalnum():
+#                 right -= 1
+#             if s[left].lower() != s[right].lower():
+#                 return False
+#             left += 1
+#             right -= 1
+#         return True
+
+
+# ✅ Key Points to Remember:
+# No extra string creation → O(1) space.
+
+# Skips spaces, punctuation using .isalnum().
+
+# Case-insensitive comparison using .lower().
+
+# Time Complexity: O(n)
+
+# Space Complexity: O(1) → better than the slicing method.
+
+# Good for interviews where in-place and optimal solution is expected.
+    
+# ⏱ Time Complexity: O(n)
+# You scan each character at most once (from both ends).
+
+# Skipping non-alphanumeric and comparing takes constant time per step.
+
+# So total operations are proportional to length of string → O(n).
+
+# 🧠 Space Complexity: O(1)
+# You’re not creating any new string or data structure.
+
+# Only using a few pointers (left, right) → constant extra space.
+
+# So:
+# ✔ Time = O(n) → because every character is checked once
+# ✔ Space = O(1) → because no extra memory used based on input size
