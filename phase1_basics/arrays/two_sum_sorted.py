@@ -43,4 +43,4 @@ class Solution(object):
             elif curr_sum < target:
                 left += 1
             else:
-                right -= 1
+                right -=1
