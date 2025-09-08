@@ -1,0 +1,75 @@
+/*Sliding Window + Map Pattern
+
+1.Initialize
+
+int l = 0;
+int max_len = 0;
+unordered_map<int,int> freq; // or char -> int if string
+
+
+2.Expand window (move right pointer)
+
+for (int r = 0; r < s.length(); r++) {
+    freq[s[r]]++; // add new element
+
+
+3.Shrink window (move left pointer) if condition is violated
+
+For Longest Substring Without Repeating Characters: condition is freq[s[r]] > 1
+For Fruit Into Baskets: condition is freq.size() > 2
+
+while (condition_not_valid) {
+    freq[s[l]]--;
+    if (freq[s[l]] == 0) freq.erase(s[l]); // only needed when condition is about "types"
+    l++;
+}
+
+
+4.Update result
+
+    max_len = max(max_len, r - l + 1);
+}
+
+Key Difference Between Problems:
+
+Longest Substring Without Repeating Characters → at most 1 occurrence of each character in window
+→ condition: freq[s[r]] > 1
+
+Fruit Into Baskets → at most 2 distinct fruit types in window
+→ condition: freq.size() > 2
+
+So yeah ✅
+your brain map is correct:
+👉 l=0, maxlen=0 → expand r → if condition breaks → shrink l → update max_len.*/
+
+
+/*TEMPLATE*/
+
+/*#include <bits/stdc++.h>
+using namespace std;
+
+int slidingWindow(string s) {
+    unordered_map<char, int> freq; ...............frequency map
+    int l = 0;                     ...............left pointer
+    int max_len = 0;               ................result
+
+    for (int r = 0; r < s.size(); r++) {
+1. expand window by including s[r]
+        freq[s[r]]++;
+
+2. shrink window while condition is violated
+        while (condition ) {
+            freq[s[l]]--;
+            if (freq[s[l]] == 0) {
+                freq.erase(s[l]); ...............only when distinct types matter
+            }
+            l++; ................................... move left pointer
+        }
+
+3. update result (length of current valid window)
+        max_len = max(max_len, r - l + 1);
+    }
+
+    return max_len;
+}
+*/
